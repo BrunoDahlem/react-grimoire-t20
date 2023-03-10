@@ -1,5 +1,5 @@
 import * as Styled from './styles';
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 
 import { Cards } from '../../components/Cards';
 import { magics } from '../../api/magics';
@@ -19,7 +19,7 @@ export const Home = () => {
   const [circles, setCircles] = useState([]);
   const magicsT20 = magics.magicsT20;
 
-  const handlerOnSubmit = (e: Event) => {
+  const handlerOnSubmit = (e: FormEvent) => {
     e.preventDefault();
     const name: HTMLInputElement = document.querySelector('#name');
     const names = name.value.split(',');
@@ -59,11 +59,6 @@ export const Home = () => {
     setType(type.value);
     setSchools(schools);
     setCircles(circles);
-    console.log(ids);
-    console.log(names);
-    console.log(type.value);
-    console.log(schools);
-    console.log(circles);
   };
 
   return (
