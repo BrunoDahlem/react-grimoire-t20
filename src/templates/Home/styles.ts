@@ -39,6 +39,7 @@ export const Container = styled.div`
         cursor: pointer;
     }
     ${Text} {
+      padding: ${theme.spacing.xsmall} 0;
       color: ${theme.colors.primaryColor};
     }
   `}

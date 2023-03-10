@@ -8,5 +8,8 @@ export const Container = styled.form`
     column-gap: 2rem;
     padding: ${theme.spacing.xxsmall};
     align-items: center;
+    @media (${theme.medias.lteMedium}) {
+      grid-template-columns: 1fr;
+    }
   `}
 `;

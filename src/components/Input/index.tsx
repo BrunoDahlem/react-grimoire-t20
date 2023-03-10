@@ -38,7 +38,7 @@ export const Input = ({
             value={value}
             required={require}
           />
-          <Text size="xsmall">{description}</Text>
+          {description && <Text size="xsmall">{description}</Text>}
         </>
       )}
       {type === 'select' && (
@@ -72,7 +72,7 @@ export const Input = ({
                 );
               })}
           </Styled.Select>
-          <Text size="xsmall">{description}</Text>
+          {description && <Text size="xsmall">{description}</Text>}
         </>
       )}
     </Styled.Container>
