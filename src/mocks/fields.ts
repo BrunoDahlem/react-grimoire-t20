@@ -28,6 +28,7 @@ export const fields = [
     name: 'schools',
     multiple: true,
     label: 'Seleciona a(s) Escola(s)',
+    description: 'CTRL + Click -> Selecionar/Desselecionar',
   },
   {
     id: 'circles',
@@ -36,6 +37,7 @@ export const fields = [
     placeholder: 'Selecione o(s) círculo(s) da(s) Magia(s)',
     multiple: true,
     label: 'Selecione o(s) Círculo(s)',
+    description: 'CTRL + Click -> Selecionar/Desselecionar',
   },
   {
     id: 'submit',

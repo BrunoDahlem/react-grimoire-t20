@@ -1,11 +1,13 @@
 import styled, { css } from 'styled-components';
 
 import { Container as Form } from '../../components/Form/styles';
+import { Container as Text } from '../../components/Text/styles';
 
 export const Container = styled.div`
   ${({ theme }) => css`
     ${Form} {
       border-bottom: 0.1rem solid ${theme.colors.mediumGray};
+      padding: ${theme.spacing.xxsmall} ${theme.spacing.large};
       label {
         color: ${theme.colors.primaryColor};
       }
@@ -33,6 +35,11 @@ export const Container = styled.div`
         background: ${theme.colors.primaryColor};
         color: ${theme.colors.white};
       }
+      input[type='submit'] , select {
+        cursor: pointer;
+    }
+    ${Text} {
+      color: ${theme.colors.primaryColor};
     }
   `}
 `;

@@ -7,5 +7,6 @@ export const Container = styled.form`
     row-gap: 0.5rem;
     column-gap: 2rem;
     padding: ${theme.spacing.xxsmall};
+    align-items: center;
   `}
 `;

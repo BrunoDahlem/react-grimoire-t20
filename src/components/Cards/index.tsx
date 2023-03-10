@@ -38,7 +38,7 @@ export const Cards = ({
     }
     if (names.length > 0) {
       for (const name of names) {
-        if (magic.name.toLowerCase() === name.toLowerCase()) {
+        if (magic.name.toLowerCase().includes(name.toLowerCase())) {
           return magic;
         }
       }
