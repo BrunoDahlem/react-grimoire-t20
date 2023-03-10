@@ -38,7 +38,6 @@ export const Input = ({
       {type === 'select' && (
         <Styled.Select
           placeholder={placeholder}
-          type="select"
           id={id}
           name={name}
           value={value}
