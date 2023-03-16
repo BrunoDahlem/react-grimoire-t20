@@ -2,7 +2,7 @@ import { Meta, Story } from '@storybook/react/types-6-0';
 import { Cards, CardsProps } from '.';
 import { magics } from '../../api/magics';
 
-const listMagics = magics.magicsT20;
+const listMagics = magics;
 
 export default {
   title: 'Cards',
