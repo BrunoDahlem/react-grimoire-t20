@@ -1,65 +1,51 @@
 import * as Styled from './styles';
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 
 import { Cards } from '../../components/Cards';
-import { magics } from '../../api/magics';
 import { Form } from '../../components/Form';
 
 import { fields } from '../../mocks/fields';
+import { fetchData, formatResponses } from '../../api/fetchData';
 
 export type HomeProps = {
   text: string;
 };
 
 export const Home = () => {
-  const [names, setNames] = useState([]);
   const [ids, setIds] = useState([]);
-  const [type, setType] = useState('Todas');
+  const [names, setNames] = useState([]);
+  const [type, setType] = useState('todas');
   const [schools, setSchools] = useState([]);
   const [circles, setCircles] = useState([]);
-  const magicsT20 = magics.magicsT20;
+  const [magics, setMagics] = useState([]);
 
   const handlerOnSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const name: HTMLInputElement = document.querySelector('#name');
-    const names = name.value.split(',');
-    if (names[0] === '') {
-      names.pop();
-    }
-    const id: HTMLInputElement = document.querySelector('#id');
-    const ids = [];
-    const idsString = id.value.split(',');
-    if (idsString[0] !== '') {
-      for (const i of idsString) {
-        ids.push(parseInt(i));
-      }
-    }
-    const type: HTMLInputElement = document.querySelector('#type');
-    const schoolsSelect: HTMLSelectElement = document.querySelector('#schools');
-    const schools = [];
-    if (schoolsSelect.length > 0) {
-      for (let i = 0; i < schoolsSelect.options.length; i++) {
-        if (schoolsSelect.options[i].selected) {
-          schools.push(schoolsSelect.options[i].value);
-        }
-      }
-    }
-    const circles = [];
-    const circlesSelect: HTMLSelectElement = document.querySelector('#circles');
-    if (circlesSelect.length > 0) {
-      for (let i = 0; i < circlesSelect.options.length; i++) {
-        if (circlesSelect.options[i].selected) {
-          circles.push(parseInt(circlesSelect.options[i].value));
-        }
-      }
-    }
+    const namesString: HTMLInputElement = document.querySelector('#name');
+    const idString: HTMLInputElement = document.querySelector('#id');
+    const typeString: HTMLInputElement = document.querySelector('#type');
+    const schoolsString: HTMLSelectElement = document.querySelector('#schools');
+    const circlesString: HTMLSelectElement = document.querySelector('#circles');
 
-    setNames(names);
+    const { ids, names, type, schools, circles } = formatResponses(
+      idString,
+      namesString,
+      typeString,
+      schoolsString,
+      circlesString,
+    );
     setIds(ids);
-    setType(type.value);
+    setNames(names);
+    setType(type);
     setSchools(schools);
     setCircles(circles);
   };
+  useEffect(() => {
+    const fn = async () => {
+      setMagics(await fetchData(ids, names, type, schools, circles));
+    };
+    fn();
+  }, [ids, names, type, schools, circles]);
 
   return (
     <Styled.Container>
@@ -69,14 +55,7 @@ export const Home = () => {
         action="/"
         method="get"
       />
-      <Cards
-        data={magicsT20}
-        names={names}
-        ids={ids}
-        circles={circles}
-        schools={schools}
-        type={type}
-      />
+      <Cards magics={magics} />
     </Styled.Container>
   );
 };
