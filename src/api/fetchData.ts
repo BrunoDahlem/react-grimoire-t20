@@ -6,7 +6,7 @@ export const fetchData = async (
   circles: number[] = [],
 ) => {
   const response = await fetch(
-    `http://localhost:3000/api/magics/?ids=${ids}&names=${names}&type=${type}&schools=${schools}&circles=${circles}`,
+    `https://grimoriot20.brunodahlem.com.br/api/magics/?ids=${ids}&names=${names}&type=${type}&schools=${schools}&circles=${circles}`,
   )
     .then((response) => response.json())
     .then((response) => response);
