@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { data } from '../../../api/forms';
+import { forms } from '../../../api/forms';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  res.status(200).json(data);
+  res.status(200).json(forms);
 }
