@@ -31,11 +31,11 @@ export const Container = styled.div`
           filter: brightness(0.1rem);
         }
       }
-      input[type='submit'] {
+      input[type='submit'], input[type='reset']  {
         background: ${theme.colors.primaryColor};
         color: ${theme.colors.white};
       }
-      input[type='submit'] , select {
+      input[type='submit'] , select , input[type='reset']  {
         cursor: pointer;
     }
     ${Text} {

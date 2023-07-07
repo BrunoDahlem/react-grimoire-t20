@@ -23,6 +23,13 @@ export const fields = [
     label: 'Selecione o(s) Tipo(s)',
   },
   {
+    id: 'order',
+    type: 'select',
+    name: 'order',
+    placeholder: 'Selecione a order de exibição',
+    label: 'Selecione a order de exibição',
+  },
+  {
     id: 'schools',
     type: 'select',
     name: 'schools',
@@ -43,5 +50,12 @@ export const fields = [
     id: 'submit',
     type: 'submit',
     name: 'submit',
+    value: 'Enviar',
+  },
+  {
+    id: 'reset',
+    type: 'reset',
+    name: 'Limpar filtros',
+    value: 'Limpar filtros',
   },
 ] as InputProps[];

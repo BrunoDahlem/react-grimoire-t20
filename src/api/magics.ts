@@ -2464,7 +2464,7 @@ export const magics = [
     extra: [],
   },
 ];
-
+export const order = ['a-z', 'z-a', 'circle-asc', 'circle-desc'];
 export const types = ['Todas', 'Arcana', 'Divina'];
 export const circles = [1, 2, 3, 4, 5];
 export const schools = [

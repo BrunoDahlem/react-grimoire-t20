@@ -9,6 +9,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     type,
     schools: schoolsString,
     circles: circlesString,
+    order,
   } = req.query;
   const ids = [];
   const names = [];
@@ -41,5 +42,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   }
   res
     .status(200)
-    .json(magicsfilter(ids, names, type as string, schools, circles));
+    .json(
+      magicsfilter(
+        ids,
+        names,
+        type as string,
+        schools,
+        circles,
+        order as string,
+      ),
+    );
 }

@@ -1,28 +1,48 @@
 export const fetchData = async (
   ids: number[] = [],
   names: string[] = [],
-  type = '',
+  type = 'all',
   schools: string[] = [],
   circles: number[] = [],
+  order = 'a-z',
 ) => {
   const response = await fetch(
-    `https://grimoriot20.brunodahlem.com.br/api/magics/?ids=${ids}&names=${names}&type=${type}&schools=${schools}&circles=${circles}`,
+    `http://localhost:3000/api/magics/?ids=${ids}&names=${names}&type=${type}&schools=${schools}&circles=${circles}&order=${order}`,
   )
     .then((response) => response.json())
     .then((response) => response);
   return response;
 };
-export const formatResponses = (
+
+export type FormatResponsesArgs = (
+  idsString?: HTMLInputElement,
+  namesString?: HTMLInputElement,
+  typeString?: HTMLSelectElement,
+  schoolsString?: HTMLSelectElement,
+  circlesString?: HTMLSelectElement,
+  orderString?: HTMLSelectElement,
+) => {
+  ids: number[];
+  names: string[];
+  type: string;
+  schools: string[];
+  circles: string[];
+  order: string;
+};
+
+export const formatResponses: FormatResponsesArgs = (
   idsString,
   namesString,
   typeString,
   schoolsString,
   circlesString,
+  orderString,
 ) => {
   const ids = [];
   const type = typeString.value;
   const schools = [];
   const circles = [];
+  const order = orderString.value;
   const names = namesString.value.split(',');
   if (names[0] === '') {
     names.pop();
@@ -53,5 +73,6 @@ export const formatResponses = (
     type,
     schools,
     circles,
+    order,
   };
 };

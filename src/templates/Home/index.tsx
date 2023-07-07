@@ -12,40 +12,49 @@ export type HomeProps = {
 };
 
 export const Home = () => {
-  const [ids, setIds] = useState([]);
-  const [names, setNames] = useState([]);
-  const [type, setType] = useState('todas');
-  const [schools, setSchools] = useState([]);
-  const [circles, setCircles] = useState([]);
+  const [config, setConfig] = useState({
+    ids: [],
+    names: [],
+    type: 'all',
+    order: 'a-z',
+    schools: [],
+    circles: [],
+  });
   const [magics, setMagics] = useState([]);
 
   const handlerOnSubmit = (e: FormEvent) => {
     e.preventDefault();
     const namesString: HTMLInputElement = document.querySelector('#name');
     const idString: HTMLInputElement = document.querySelector('#id');
-    const typeString: HTMLInputElement = document.querySelector('#type');
+    const typeString: HTMLSelectElement = document.querySelector('#type');
     const schoolsString: HTMLSelectElement = document.querySelector('#schools');
     const circlesString: HTMLSelectElement = document.querySelector('#circles');
+    const orderString: HTMLSelectElement = document.querySelector('#order');
 
-    const { ids, names, type, schools, circles } = formatResponses(
+    const { ids, names, type, schools, circles, order } = formatResponses(
       idString,
       namesString,
       typeString,
       schoolsString,
       circlesString,
+      orderString,
     );
-    setIds(ids);
-    setNames(names);
-    setType(type);
-    setSchools(schools);
-    setCircles(circles);
+    setConfig({
+      ids,
+      names,
+      type,
+      schools,
+      circles,
+      order,
+    });
   };
   useEffect(() => {
     const fn = async () => {
-      setMagics(await fetchData(ids, names, type, schools, circles));
+      const { ids, names, type, schools, circles, order } = config;
+      setMagics(await fetchData(ids, names, type, schools, circles, order));
     };
     fn();
-  }, [ids, names, type, schools, circles]);
+  }, [config]);
 
   return (
     <Styled.Container>
