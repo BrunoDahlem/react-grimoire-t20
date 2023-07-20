@@ -76,3 +76,24 @@ export const formatResponses: FormatResponsesArgs = (
     order,
   };
 };
+
+export const fetchDataForms = async () => {
+  const response = await fetch(
+    'https://api.amp.reweb.io/api/forms?domain_id=2760&__amp_source_origin=https://grimoriot20.brunodahlem.com.br',
+  )
+    .then((response) => response.json())
+    .then((response) => {
+      const results = response.items.results.data;
+      const aux = [];
+      for (const result of results) {
+        aux.push({
+          value: result.block_id,
+          label: result.block.name,
+        });
+      }
+      return {
+        options: aux,
+      };
+    });
+  return response;
+};
