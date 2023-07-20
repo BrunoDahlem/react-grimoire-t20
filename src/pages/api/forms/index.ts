@@ -7,10 +7,6 @@ import { fetchDataForms } from '../../../api/fetchData';
 // }
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method == 'POST') {
-    res.status(200).json(await fetchDataForms());
-  } else {
-    res.status(200).json({ message: 'Somente metodos POST' });
-  }
+  res.status(200).json(await fetchDataForms());
 };
 export default handler;
