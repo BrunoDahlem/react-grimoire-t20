@@ -31,7 +31,14 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="pt-BR">
-        <Head />
+        <Head>
+          <title> Grimorio T20 </title>
+          <meta name="title" content="Grimorio T20" />
+          <meta
+            name="description"
+            content="Site para pesquisar magias do RPG T20"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />
