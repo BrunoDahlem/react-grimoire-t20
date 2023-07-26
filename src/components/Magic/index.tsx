@@ -70,10 +70,12 @@ export const Magic = ({
         <Styled.ImprovementsUl>
           {extra.map((info, i) => {
             return (
-              <Text size="small" key={i}>
-                <Styled.Span>{info.name}: </Styled.Span>
-                {info.description}. {info.require}
-              </Text>
+              <Styled.Li key={i}>
+                <Text size="small">
+                  <Styled.Span>{info.name}: </Styled.Span>
+                  {info.description}. {info.require}
+                </Text>
+              </Styled.Li>
             );
           })}
         </Styled.ImprovementsUl>
